@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: smoke-test
+spec:
+  template:
+    spec:
+      containers:
+      - name: playwright
+        image: public.ecr.aws/g1q8t0w6/smoke-tests-public:latest
+        imagePullPolicy: Always
+        env:
+        - name: APP_URL
+          value: "https://www.google.com"
+      restartPolicy: Never
+  backoffLimit: 0
